@@ -43,18 +43,16 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 // <Your code here >
 
-var person = new Schema({
-    name:  String, // String is shorthand for {type: String}
-    author: String,
-    body:   String,
-    comments: [{ body: String, date: Date }],
-    date: { type: Date, default: Date.now },
-    hidden: Boolean,
-    meta: {
-      votes: Number,
-      favs:  Number
-    }
+var schema = new Schema({
+    name: {
+      type: String,
+      required: true
+    }, // String is shorthand for {type: String}
+    age: Number,
+    favoriteFoods: [String] 
   });
+
+var Person = mongoose.model('Person', schema);
 
 /* = <Your Model> */
 
