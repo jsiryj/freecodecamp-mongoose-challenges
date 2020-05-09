@@ -53,7 +53,17 @@ var personSchema = new Schema({
   });
 
 var Person = mongoose.model('Person', personSchema);
-const 
+const saveAndExec = (done) => {
+  var samplePerson = new Person({name: "Joe Schmo", age: 28, favoriteFoods: [
+  "Pizza", "Chups", "Fush"
+]})
+samplePerson.save((err, data) => {
+  if(err) return console.error(err);
+  done(null, data);
+})
+}
+
+saveAndExec();
 
 /* = <Your Model> */
 
