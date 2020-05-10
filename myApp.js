@@ -196,9 +196,9 @@ var findEditThenSave = function(personId, done) {
   Person.findById(personId, (err, data) => {
     if(err) return console.log(err);
     data.favoriteFoods.push(foodToAdd);
-    data.save((err, data) => {
-      if(err) return console.log(err);
-      done(null, data)
+    data.save((errs, dat) => {
+      if(errs) return console.log(errs);
+      done(null, dat)
     });
   }); 
   
