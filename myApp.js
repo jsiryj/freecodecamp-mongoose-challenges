@@ -221,7 +221,7 @@ var findEditThenSave = function(personId, done) {
 
 var findAndUpdate = function(personName, done) {
   var ageToSet = 20;
-  Person.findByIdAndUpdate({name: personName}, {age: ageToSet}, {new: true}, (err, data) => {
+  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true}, (err, data) => {
     if(err) return console.log(err);
     done(null, data)
   })
@@ -238,9 +238,10 @@ var findAndUpdate = function(personName, done) {
 // As usual, use the function argument `personId` as search key.
 
 var removeById = function(personId, done) {
-  
-  done(null/*, data*/);
-    
+  Person.findByIdAndRemove(personId, (err, data) => {
+    if(err) return console.log(err);
+    done(null, data)
+  })
 };
 
 /** 11) Delete many People */
